@@ -12,8 +12,8 @@
             font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f5f5f5;
-            color: #333;
+            background-color: #f8f9fa;
+            color: #343a40;
         }
 
         header {
@@ -23,27 +23,91 @@
             padding: 2em;
         }
 
-        nav { 
+        nav {
             background-color: #6c757d;
             color: #fff;
             padding: 1em;
             display: flex;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
         }
 
-        nav a {
+        nav div a {
             color: #fff;
             text-decoration: none;
             margin: 0 1em;
             font-weight: bold;
+            cursor: pointer;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        nav div a::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: #fff;
+            transform: scaleX(0);
+            transform-origin: bottom right;
+            transition: transform 0.3s ease;
+        }
+
+        nav div a:hover {
+            color: #f8f9fa;
+        }
+
+        nav div a:hover::before {
+            transform: scaleX(1);
+            transform-origin: bottom left;
+        }
+
+        .nav-icons {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-icons a {
+            color: #fff;
+            text-decoration: none;
+            margin-left: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .nav-icons a img {
+            width: 30px;
+            height: auto;
+        }
+
+        .nav-icons a:hover img {
+            transform: scale(1.2);
         }
 
         section {
             padding: 2em;
             text-align: left;
+            scroll-margin-top: 60px;
+            transition: transform 0.3s ease;
         }
 
         h2 {
             color: #343a40;
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            width: 60px;
+            height: 2px;
+            background-color: #343a40;
+            bottom: 0;
+            left: 0;
         }
 
         .projects {
@@ -64,6 +128,18 @@
             color: #fff;
             text-align: center;
             padding: 1em;
+            position: relative;
+            margin-top: 30px;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            background-color: #fff;
+            top: 0;
+            left: 0;
         }
     </style>
 </head>
@@ -75,12 +151,23 @@
     </header>
 
     <nav>
-        <a href="#bio">About</a>
-        <a href="#skills">Skills</a>
-        <a href="#projects">Projects</a>
-        <a href="#resume">Resume</a>
-        <a href="#contact">Contact</a>
+        <div>
+            <a onclick="scrollToSection('bio')">About</a>
+            <a onclick="scrollToSection('skills')">Skills</a>
+            <a onclick="scrollToSection('projects')">Projects</a>
+            <a onclick="scrollToSection('resume')">Resume</a>
+            <a onclick="scrollToSection('contact')">Contact</a>
+        </div>
+        <div class="nav-icons">
+            <a href="https://www.linkedin.com/in/justin-veltri-4859a82a3" target="_blank">
+                <img src="images/LinkedInLogo.png" alt="LinkedIn">
+            </a>
+            <a href="https://github.com/justinv1234" target="_blank">
+                <img src="images/GithubLogo.png" alt="GitHub">
+            </a>
+        </div>
     </nav>
+
 
     <section id="bio">
         <h2>About Me</h2>
@@ -148,7 +235,7 @@
             <div class="project">
                 <img src="images/CACLogoHeader.png" alt="App Challange Logo" style="width: 100%;">
                 <img src="images/CACLogoText.png" alt="App Challenge Text" style="width: 100%;">
-                <h3>Ion Inc. - Congressional App Challenge 2021</h3>
+                <h3>Ion Inc. - Congressional App Challenge</h3>
                 <p>
                     Ion Inc. is an educational app created using block code for the 2021 Congressional App Challenge in district NJ-03. The purpose of this app is to teach kids about the various kinds of renewable energy in an entertaining way. Through interactive and engaging content, Ion Inc. aims to make learning about renewable energy sources a fun and enjoyable experience for young minds.
                 </p>
@@ -173,5 +260,14 @@
         <p>&copy; 2023 Justin Veltri. All rights reserved.</p>
     </footer>
 </body>
+
+<script>
+    function scrollToSection(sectionId) {
+        const section = document.getElementById(sectionId);
+        section.scrollIntoView({
+            behavior: 'smooth'
+        });
+    }
+</script>
 
 </html>
