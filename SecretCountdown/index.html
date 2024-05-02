@@ -40,11 +40,11 @@
 
 <script>
     function updateCountdown() {
-        // Current date and time
-        var now = new Date();
+        // Current date and time in EST
+        var now = new Date(new Date().toLocaleString("en-US", {timeZone: "America/New_York"}));
 
-        // Target date and time (May 4th)
-        var targetDateMay4 = new Date(now.getFullYear(), 4, 4, 0, 0, 0, 0);
+        // Target date and time (May 4th 2:00 PM EST)
+        var targetDateMay4 = new Date(now.getFullYear(), 4, 4, 14, 0, 0, 0);
 
         // Target date and time (January 9th)
         var targetDateJan9 = new Date(now.getFullYear(), 0, 9, 0, 0, 0, 0);
@@ -52,7 +52,7 @@
         // Calculate the seconds since January 9th
         var secondsSinceJan9 = Math.floor((now - targetDateJan9) / 1000);
 
-        // Calculate the difference in seconds until May 4th
+        // Calculate the difference in seconds until May 4th 2:00 PM
         var secondsUntilMay4 = Math.floor((targetDateMay4 - now) / 1000);
 
         // Calculate the total seconds from January 9th to May 4th
@@ -63,13 +63,13 @@
 
         // Display the seconds since January 9th, countdown, total seconds, and ratio as a percentage
         document.getElementById("secondsSinceJan9").innerHTML = "Seconds since January 9th: " + secondsSinceJan9;
-        document.getElementById("countdown").innerHTML = "Seconds until May 4th: " + secondsUntilMay4;
-        document.getElementById("totalSeconds").innerHTML = "Total seconds from Jan 9th to May 4th: " + totalSeconds;
+        document.getElementById("countdown").innerHTML = "Seconds until May 4th 2:00 PM EST: " + secondsUntilMay4;
+        document.getElementById("totalSeconds").innerHTML = "Total seconds from Jan 9th to May 4th 2:00 PM EST: " + totalSeconds;
         document.getElementById("ratio").innerHTML = ratioPercentage + "%";
     }
 
     // Update countdown every second
-    setInterval(updateCountdown, 500);
+    setInterval(updateCountdown, 1000);
 
     // Initial update
     updateCountdown();
